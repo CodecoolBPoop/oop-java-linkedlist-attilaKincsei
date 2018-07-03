@@ -5,16 +5,23 @@ import java.util.List;
 
 public class TestLinkedList {
 
-    static List testLinkedList = new LinkedList();
-
 
     public static void main(String[] args) {
 
-        List<Integer> testALiList = new AtiLinkedList<Integer>();
-        for (int i = 1; i < 11; i++) {
-            testALiList.add(i);
-        }
-        System.out.println(testALiList);
+        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+        singlyLinkedList.add(111);
+        singlyLinkedList.add(112);
+        singlyLinkedList.add(113);
+        singlyLinkedList.add(113111);
+        System.out.println(singlyLinkedList);
+        System.out.println(singlyLinkedList.size());
+        System.out.println(singlyLinkedList.get(3));
+
+//        List<Integer> testLinkedList = new LinkedList<>();
+//        for (Integer i = 0; i < 10; i++) {
+//            testLinkedList.add(i);
+//        }
+//        System.out.println(testLinkedList.get(-1));
     }
 
 }
