@@ -1,6 +1,6 @@
 package com.codecool.linkedList;
 
-public class SinglyLinkedList {
+public class SinglyLinkedList<E> {
 
 
     private transient int size = 0;
@@ -10,17 +10,14 @@ public class SinglyLinkedList {
      * Invariant: (first == null && last == null) ||
      * (first.prev == null && first.item != null)
      */
-    private transient MyNode headNode;
+    private transient MyNode<E> headNode;
 
     /**
      * Pointer to last node.
      * Invariant: (first == null && last == null) ||
      * (last.next == null && last.item != null)
      */
-    private transient MyNode tailNode;
-
-    private transient MyNode newNode;
-    private transient MyNode previousNode;
+    private transient MyNode<E> tailNode;
 
     // GOOD EXAMPLE IMPLEMENTATION:
     // https://netjs.blogspot.com/2015/08/how-linked-list-class-works-internally-java.html
@@ -32,13 +29,13 @@ public class SinglyLinkedList {
      Adds new element at the end of the list and sets it as tailNode
      */
     public void add(int nodeData) {
-        MyNode newNode = new MyNode(nodeData);
+        MyNode<E> newNode = new MyNode<>(nodeData);
         if (size == 0) {
             headNode = newNode;
             headNode.setNextNode(null);
             tailNode = headNode;
         } else {
-            MyNode lastButOneNode = tailNode;
+            MyNode<E> lastButOneNode = tailNode;
             lastButOneNode.setNextNode(newNode);
             tailNode = lastButOneNode.getNextNode();
             tailNode.setNextNode(null);
@@ -52,14 +49,14 @@ public class SinglyLinkedList {
             throw new IndexOutOfBoundsException();
         }
 
-        MyNode nextElement;
+        MyNode<E> nextElement;
 
         if (index == 0) {
             nextElement = headNode;
         } else {
             nextElement = headNode;
             for (int i = 1; i <= index; i++) {
-                MyNode temporaryElement = nextElement.getNextNode();
+                MyNode<E> temporaryElement = nextElement.getNextNode();
                 nextElement = temporaryElement;
             }
 
@@ -86,6 +83,29 @@ public class SinglyLinkedList {
         stringBuilder.append("]");
         return stringBuilder.toString();
     }
+
+    public void add(String nodeData) {
+        if (size > 0) {
+            boolean isSameClass = nodeData.getClass().isInstance(this.get(0));
+            System.out.println(isSameClass);
+            if (!isSameClass) { // never reaches this statement as for int-s the add(int) method is used
+                System.out.println("Error: no suitable method found for add(java.lang.String)");
+            }
+        }
+        MyNode<E> newNode = new MyNode<>(nodeData);
+        if (size == 0) {
+            headNode = newNode;
+            headNode.setNextNode(null);
+            tailNode = headNode;
+        } else {
+            MyNode<E> lastButOneNode = tailNode;
+            lastButOneNode.setNextNode(newNode);
+            tailNode = lastButOneNode.getNextNode();
+            tailNode.setNextNode(null);
+        }
+        size++;
+    }
+
 }
 
 

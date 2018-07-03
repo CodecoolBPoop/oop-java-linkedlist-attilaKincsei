@@ -8,20 +8,22 @@ public class TestLinkedList {
 
     public static void main(String[] args) {
 
-        SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
-        singlyLinkedList.add(111);
-        singlyLinkedList.add(112);
-        singlyLinkedList.add(113);
-        singlyLinkedList.add(113111);
+        SinglyLinkedList<String> singlyLinkedList = new SinglyLinkedList<>();
+        singlyLinkedList.add("asd");
+        singlyLinkedList.add("fffff");
+        singlyLinkedList.add("bbbbb");
+        singlyLinkedList.add("ggggg");
+        singlyLinkedList.add(1);
         System.out.println(singlyLinkedList);
         System.out.println(singlyLinkedList.size());
         System.out.println(singlyLinkedList.get(3));
 
-//        List<Integer> testLinkedList = new LinkedList<>();
-//        for (Integer i = 0; i < 10; i++) {
-//            testLinkedList.add(i);
+//        List<String> testLinkedList = new LinkedList<>();
+//        for (int i = 0; i < 10; i++) {
+//            testLinkedList.add(String.valueOf(i));
 //        }
-//        System.out.println(testLinkedList.get(-1));
+//
+//        System.out.println(testLinkedList.get(1));
     }
 
 }
