@@ -3,16 +3,16 @@ package com.codecool.linkedList;
 
 class MyNode<E> {
 
-    Object nodeData;
+    E nodeData;
 
-    MyNode nextNode;
+    MyNode<E> nextNode;
 
 
-    public MyNode(Object nodeData) {
+    public MyNode(E nodeData) {
         this.nodeData = nodeData;
     }
 
-    public MyNode getNextNode() {
+    public MyNode<E> getNextNode() {
         return nextNode;
     }
 
@@ -21,7 +21,7 @@ class MyNode<E> {
     }
 
 
-    public Object getNodeData() {
+    public E getNodeData() {
         return nodeData;
     }
 }

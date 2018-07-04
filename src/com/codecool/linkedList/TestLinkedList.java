@@ -13,7 +13,6 @@ public class TestLinkedList {
         singlyLinkedList.add("fffff");
         singlyLinkedList.add("bbbbb");
         singlyLinkedList.add("ggggg");
-        singlyLinkedList.add(1);
         System.out.println(singlyLinkedList);
         System.out.println(singlyLinkedList.size());
         System.out.println(singlyLinkedList.get(3));

@@ -28,8 +28,8 @@ public class SinglyLinkedList<E> {
     /**
      Adds new element at the end of the list and sets it as tailNode
      */
-    public void add(int nodeData) {
-        MyNode<E> newNode = new MyNode<>(nodeData);
+    public void add(E nodeData) {
+        MyNode<E> newNode = new MyNode(nodeData);
         if (size == 0) {
             headNode = newNode;
             headNode.setNextNode(null);
@@ -43,11 +43,7 @@ public class SinglyLinkedList<E> {
         size++;
     }
 
-    public Object get(int index) throws IndexOutOfBoundsException {
-
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
+    public E get(int index) {
 
         MyNode<E> nextElement;
 
@@ -83,29 +79,6 @@ public class SinglyLinkedList<E> {
         stringBuilder.append("]");
         return stringBuilder.toString();
     }
-
-    public void add(String nodeData) {
-        if (size > 0) {
-            boolean isSameClass = nodeData.getClass().isInstance(this.get(0));
-            System.out.println(isSameClass);
-            if (!isSameClass) { // never reaches this statement as for int-s the add(int) method is used
-                System.out.println("Error: no suitable method found for add(java.lang.String)");
-            }
-        }
-        MyNode<E> newNode = new MyNode<>(nodeData);
-        if (size == 0) {
-            headNode = newNode;
-            headNode.setNextNode(null);
-            tailNode = headNode;
-        } else {
-            MyNode<E> lastButOneNode = tailNode;
-            lastButOneNode.setNextNode(newNode);
-            tailNode = lastButOneNode.getNextNode();
-            tailNode.setNextNode(null);
-        }
-        size++;
-    }
-
 }
 
 
