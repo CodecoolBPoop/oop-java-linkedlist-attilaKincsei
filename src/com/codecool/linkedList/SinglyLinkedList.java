@@ -79,20 +79,38 @@ public class SinglyLinkedList<E> {
             MyNode<E> secondNode = headNode;
             insertNode.setNextNode(secondNode);
             headNode = insertNode;
-        } else if (index == size - 1) {
-            this.add(nodeData);
-            size--;
+            size++;
         } else {
 
-            MyNode<E> insertAfter = this.getNode(index - 1);
-            MyNode<E> insertBefore = this.getNode(index);
+            MyNode<E> previousToInsertion = this.getNode(index - 1);
+            MyNode<E> nextToInsertion = this.getNode(index);
 
-            insertNode.setNextNode(insertBefore);
-            insertAfter.setNextNode(insertNode);
+            insertNode.setNextNode(nextToInsertion);
+            previousToInsertion.setNextNode(insertNode);
+            size++;
+        }
+    }
 
+    public void remove(int index) throws IndexOutOfBoundsException {
+
+        MyNode<E> previousToRemoved = this.getNode(index - 1);
+
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        } else if (index == 0) {
+            MyNode<E> newHeadNode = headNode.getNextNode();
+            headNode = newHeadNode;
+            size--;
+        } else if (index == size - 1) {
+            previousToRemoved.setNextNode(null);
+            tailNode = previousToRemoved;
+            size--;
+        } else {
+            MyNode<E> nextToRemoved = this.getNode(index + 1);
+            previousToRemoved.setNextNode(nextToRemoved);
+            size--;
         }
 
-        size++;
     }
 
     public int size() {
