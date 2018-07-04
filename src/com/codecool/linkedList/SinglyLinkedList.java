@@ -25,6 +25,32 @@ public class SinglyLinkedList<E> {
     SinglyLinkedList() {
     }
 
+    public MyNode<E> getNode(int index) {
+
+        MyNode<E> nextElement;
+
+        if (index == 0) {
+            nextElement = headNode;
+        } else {
+            nextElement = headNode;
+            for (int i = 1; i <= index; i++) {
+                MyNode<E> temporaryElement = nextElement.getNextNode();
+                nextElement = temporaryElement;
+            }
+
+        }
+
+        return nextElement;
+    }
+
+    public E get(int index) {
+
+        MyNode<E> nodeAtIndex = getNode(index);
+
+        return nodeAtIndex.getNodeData();
+    }
+
+
     /**
      Adds new element at the end of the list and sets it as tailNode
      */
@@ -43,22 +69,30 @@ public class SinglyLinkedList<E> {
         size++;
     }
 
-    public E get(int index) {
+    public void insert(int index, E nodeData) throws IndexOutOfBoundsException {
 
-        MyNode<E> nextElement;
+        MyNode<E> insertNode = new MyNode<>(nodeData);
 
-        if (index == 0) {
-            nextElement = headNode;
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        } else if (index == 0) {
+            MyNode<E> secondNode = headNode;
+            insertNode.setNextNode(secondNode);
+            headNode = insertNode;
+        } else if (index == size - 1) {
+            this.add(nodeData);
+            size--;
         } else {
-            nextElement = headNode;
-            for (int i = 1; i <= index; i++) {
-                MyNode<E> temporaryElement = nextElement.getNextNode();
-                nextElement = temporaryElement;
-            }
+
+            MyNode<E> insertAfter = this.getNode(index - 1);
+            MyNode<E> insertBefore = this.getNode(index);
+
+            insertNode.setNextNode(insertBefore);
+            insertAfter.setNextNode(insertNode);
 
         }
 
-        return nextElement.getNodeData();
+        size++;
     }
 
     public int size() {
@@ -78,6 +112,14 @@ public class SinglyLinkedList<E> {
         }
         stringBuilder.append("]");
         return stringBuilder.toString();
+    }
+
+    MyNode<E> getHeadNode() {
+        return headNode;
+    }
+
+    MyNode<E> getTailNode() {
+        return tailNode;
     }
 }
 
