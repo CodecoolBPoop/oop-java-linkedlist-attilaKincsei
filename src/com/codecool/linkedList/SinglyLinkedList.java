@@ -22,7 +22,14 @@ public class SinglyLinkedList<E> extends MyLinkedList<E> {
     // GOOD EXAMPLE IMPLEMENTATION:
     // https://netjs.blogspot.com/2015/08/how-linked-list-class-works-internally-java.html
 
-    SinglyLinkedList() {
+    @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public MyNode<E> getHeadNode() {
+        return headNode;
     }
 
 
@@ -91,19 +98,6 @@ public class SinglyLinkedList<E> extends MyLinkedList<E> {
 
     }
 
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public MyNode<E> getHeadNode() {
-        return headNode;
-    }
-
-    MyNode<E> getTailNode() {
-        return tailNode;
-    }
 }
 
 
