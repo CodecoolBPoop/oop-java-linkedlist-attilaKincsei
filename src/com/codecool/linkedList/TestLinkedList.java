@@ -18,13 +18,13 @@ public class TestLinkedList {
 
         System.out.println(doublyLinkedList.size());
         System.out.println(doublyLinkedList);
-        doublyLinkedList.remove(doublyLinkedList.size() - 1);
+        doublyLinkedList.insert(2, 10);
         System.out.println(doublyLinkedList);
-        System.out.println(doublyLinkedList.getNode(doublyLinkedList.size() - 1).getNextNode());
-//        doublyLinkedList.remove(2);
+        System.out.println(doublyLinkedList.size());
+        doublyLinkedList.remove(4);
 //        doublyLinkedList.insert(0, 111);
-//        System.out.println(doublyLinkedList);
-//        System.out.println(doublyLinkedList.size());
+        System.out.println(doublyLinkedList);
+        System.out.println(doublyLinkedList.size());
 
 
     }

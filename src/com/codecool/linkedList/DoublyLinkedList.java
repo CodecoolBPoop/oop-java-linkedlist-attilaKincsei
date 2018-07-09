@@ -41,11 +41,37 @@ public class DoublyLinkedList<E> extends MyLinkedList<E> {
     @Override
     public void insert(int index, E nodeData) throws IndexOutOfBoundsException {
 
+        MyNode<E> insertNode = new MyNode<>(nodeData);
+
+        if (index >= size || index < 0) {
+
+            throw new IndexOutOfBoundsException();
+
+        } else if (index == 0) {
+
+            MyNode<E> secondNode = headNode;
+            insertNode.setNextNode(secondNode);
+            insertNode.setPreviousNode(null);
+            headNode = insertNode;
+            size++;
+
+        } else {
+
+            MyNode<E> previousToInsertion = this.getNode(index - 1);
+            MyNode<E> nextToInsertion = this.getNode(index);
+
+            insertNode.setNextNode(nextToInsertion);
+            insertNode.setPreviousNode(previousToInsertion);
+            previousToInsertion.setNextNode(insertNode);
+            nextToInsertion.setPreviousNode(insertNode);
+            size++;
+        }
+
     }
 
     @Override
     public void remove(int index) throws IndexOutOfBoundsException {
-        MyNode<E> previousToRemoved = this.getNode(index - 1);
+        MyNode<E> nodeToBeRemoved = this.getNode(index);
 
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException();
@@ -55,13 +81,14 @@ public class DoublyLinkedList<E> extends MyLinkedList<E> {
             headNode.setPreviousNode(null);
             size--;
         } else if (index == size - 1) {
-            previousToRemoved.setNextNode(null);
-            tailNode = previousToRemoved;
+            tailNode = nodeToBeRemoved.getPreviousNode();
+            tailNode.setNextNode(null);
             size--;
         } else {
-            MyNode<E> nextToRemoved = this.getNode(index + 1);
-            previousToRemoved.setNextNode(nextToRemoved);
-            nextToRemoved.setPreviousNode(previousToRemoved);
+            MyNode<E> nextNode = nodeToBeRemoved.getNextNode();
+            MyNode<E> previousNode = nodeToBeRemoved.getPreviousNode();
+            previousNode.setNextNode(nextNode);
+            nextNode.setPreviousNode(previousNode);
             size--;
         }
 
