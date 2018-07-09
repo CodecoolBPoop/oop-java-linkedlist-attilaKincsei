@@ -7,6 +7,8 @@ class MyNode<E> {
 
     MyNode<E> nextNode;
 
+    MyNode<E> previousNode;
+
 
     public MyNode(E nodeData) {
         this.nodeData = nodeData;
@@ -16,10 +18,17 @@ class MyNode<E> {
         return nextNode;
     }
 
-    public void setNextNode(MyNode newNode) {
+    public MyNode<E> getPreviousNode() {
+        return previousNode;
+    }
+
+    public void setNextNode(MyNode<E> newNode) {
         this.nextNode = newNode;
     }
 
+    public void setPreviousNode(MyNode<E> previousNode) {
+        this.previousNode = previousNode;
+    }
 
     public E getNodeData() {
         return nodeData;
